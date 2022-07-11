@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - 5.x-dev
+      - 6.x-dev
 
 jobs:
   ci:
@@ -12,8 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4', '8.0']
-        symfony: ['^4.3', '^5.0']
+        php: ['8.1']
+        symfony: ['^6.0', '^6.1']
 
     name: PHP ${{ matrix.php }}
 
@@ -34,7 +35,7 @@ jobs:
           composer require --no-update symfony/console:${{ matrix.symfony }};
           composer require --no-update symfony/twig-bridge:${{ matrix.symfony }};
 
-      - uses: 'ramsey/composer-install@v1'
+      - uses: 'ramsey/composer-install@v2'
         with:
           dependency-versions: 'lowest'
 
